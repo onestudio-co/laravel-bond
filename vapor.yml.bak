@@ -6,8 +6,6 @@ environments:
         cli-memory: 512
         runtime: 'php-8.1:al2'
         octane: true
-        octane-database-session-persist: true
-        octane-database-session-ttl: 10
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
