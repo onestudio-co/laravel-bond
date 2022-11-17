@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\RegisterController;
+use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Validation\Rule;
 use Tests\TestCase;
 
 class RegisterControllerTest extends TestCase
@@ -12,9 +15,9 @@ class RegisterControllerTest extends TestCase
     public function test_non_authonticated_user_can_register()
     {
         $this->postJson('api/users/register', [
-            'name'             => 'salah',
-            'email'            => 'test@test.com',
-            'password'         => 'password',
+            'name'                  => 'salah',
+            'email'                 => 'test@test.com',
+            'password'              => 'password',
             'password_confirmation' => 'password',
         ])->assertSuccessful()
             ->assertJsonStructure([
@@ -35,10 +38,32 @@ class RegisterControllerTest extends TestCase
     public function test_password_confirmation_register()
     {
         $this->postJson('api/users/register', [
-            'name'             => 'salah',
-            'email'            => 'test@test.com',
-            'password'         => 'password',
+            'name'                  => 'salah',
+            'email'                 => 'test@test.com',
+            'password'              => 'password',
             'password_confirmation' => 'wrong_password',
         ])->assertJsonValidationErrorFor('password');
+    }
+
+    public function test_registration_validation_roles()
+    {
+        $this->assertEquals(
+            [
+                'name'     => [
+                    'nullable',
+                    'string',
+                ],
+                'email'    => [
+                    'required',
+                    'email',
+                    Rule::unique('users', 'email'),
+                ],
+                'password' => [
+                    'required',
+                    'confirmed',
+                    'min:6',
+                ],
+            ]
+            , (new UserRegisterRequest)->rules());
     }
 }
