@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users')->group(function () {
     Route::middleware(['throttle:1,2', 'guest'])->post('anonymous-login', [LoginController::class, 'anonymous']);
     Route::post('login', [LoginController::class, 'login'])->middleware('throttle:1,2');
+    Route::post('register', [RegisterController::class, 'store'])->middleware('throttle:1,2');
 });
