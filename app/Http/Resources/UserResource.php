@@ -19,4 +19,14 @@ class UserResource extends JsonResource
             'is_anonymous' => $this->is_anonymous,
         ];
     }
+
+    public function withToken()
+    {
+        $this->additional([
+            'meta' => [
+                'token' => $this->createToken('test')->plainTextToken,
+            ],
+        ]);
+        return $this;
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AnonymousController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('users')->group(function () {
-    Route::post('anonymous-login', AnonymousController::class)->middleware('throttle:1,2');
+    Route::post('anonymous-login', [LoginController::class, 'anonymous'])->middleware('throttle:1,2');
+    Route::post('login', [LoginController::class, 'login'])->middleware('throttle:1,2');
 });
