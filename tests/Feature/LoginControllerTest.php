@@ -12,7 +12,7 @@ class LoginControllerTest extends TestCase
 
     public function test_user_can_login_anonymosly()
     {
-        $this->post('api/users/anonymous-login')
+        $this->postJson('api/users/anonymous-login')
             ->assertSuccessful()
             ->assertJsonStructure(
                 [
@@ -33,6 +33,14 @@ class LoginControllerTest extends TestCase
                     'is_anonymous' => true,
                 ],
             ]);
+    }
+
+    public function test_authenticated_user_cannot_login_anonymosly()
+    {
+        $user = UserFactory::new()->create();
+        $this->actingAs($user)
+            ->postJson('api/users/anonymous-login')
+            ->assertForbidden();
     }
 
     public function test_user_can_login()

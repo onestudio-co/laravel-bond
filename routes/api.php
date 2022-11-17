@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('users')->group(function () {
-    Route::post('anonymous-login', [LoginController::class, 'anonymous'])->middleware('throttle:1,2');
+    Route::middleware(['throttle:1,2', 'guest'])->post('anonymous-login', [LoginController::class, 'anonymous']);
     Route::post('login', [LoginController::class, 'login'])->middleware('throttle:1,2');
 });
