@@ -2,9 +2,7 @@
 
 namespace App\Notifications;
 
-use Illuminate\Notifications\Notification;
-
-class NewPostNotification extends Notification
+class NewPostNotification extends NotificationChannel
 {
     public function __construct(
         public $id,

@@ -48,7 +48,7 @@ class User extends Authenticatable
     public function safeNotify(Notification $notification)
     {
         try {
-
+            $this->notify($notification);
         }catch (Exception $exception){
             report($exception);
             Log::debug('fcm_not_send',[
