@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -45,6 +47,15 @@ class User extends Authenticatable
 
     public function safeNotify(Notification $notification)
     {
-        rescue(fn() => $this->notify($notification));
+        try {
+
+        }catch (Exception $exception){
+            report($exception);
+            Log::debug('fcm_not_send',[
+                'exception' => $exception,
+                'user' => $this,
+                'notification' => $notification,
+            ]);
+        }
     }
 }
