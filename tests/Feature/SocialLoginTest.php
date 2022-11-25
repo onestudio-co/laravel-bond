@@ -8,7 +8,6 @@ use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\User as SocialUser;
 use Tests\TestCase;
 
-
 class SocialLoginTest extends TestCase
 {
     use RefreshDatabase;
@@ -37,7 +36,7 @@ class SocialLoginTest extends TestCase
                     'is_anonymous',
                 ],
                 'meta' => [
-                    'token'
+                    'token',
                 ],
             ])
             ->assertJson([
@@ -45,7 +44,7 @@ class SocialLoginTest extends TestCase
                     'email' => 'test@test.com',
                     'name' => 'Mohamed Wh',
                     'is_anonymous' => false,
-                ]
+                ],
             ]);
         $this->assertDatabaseHas('social_logins', [
             'user_id' => User::firstWhere('email', 'test@test.com')->id,
@@ -55,5 +54,4 @@ class SocialLoginTest extends TestCase
             'last_token' => 'fake_token',
         ]);
     }
-
 }

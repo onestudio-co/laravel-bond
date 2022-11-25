@@ -39,5 +39,4 @@ class NewPostNotification extends NotificationChannel
     {
         return $this->sender_name;
     }
-
 }

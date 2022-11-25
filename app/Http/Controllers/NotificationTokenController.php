@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NotificationTokenRequest;
 use App\Models\NotificationToken;
-use Illuminate\Http\Request;
 
 class NotificationTokenController extends Controller
 {
@@ -22,6 +21,7 @@ class NotificationTokenController extends Controller
                 'token' => $request->token,
             ],
         );
+
         return response()->json(['message' => 'success']);
     }
 }

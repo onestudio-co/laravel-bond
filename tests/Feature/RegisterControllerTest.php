@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\RegisterController;
 use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\Rule;
@@ -15,9 +14,9 @@ class RegisterControllerTest extends TestCase
     public function test_non_authonticated_user_can_register()
     {
         $this->postJson('api/users/register', [
-            'name'                  => 'salah',
-            'email'                 => 'test@test.com',
-            'password'              => 'password',
+            'name' => 'salah',
+            'email' => 'test@test.com',
+            'password' => 'password',
             'password_confirmation' => 'password',
         ])->assertSuccessful()
             ->assertJsonStructure([
@@ -27,9 +26,9 @@ class RegisterControllerTest extends TestCase
             ])
             ->assertJson([
                 'data' => [
-                    'id'           => 1,
-                    'name'         => 'salah',
-                    'email'        => 'test@test.com',
+                    'id' => 1,
+                    'name' => 'salah',
+                    'email' => 'test@test.com',
                     'is_anonymous' => false,
                 ],
             ]);
@@ -38,9 +37,9 @@ class RegisterControllerTest extends TestCase
     public function test_password_confirmation_register()
     {
         $this->postJson('api/users/register', [
-            'name'                  => 'salah',
-            'email'                 => 'test@test.com',
-            'password'              => 'password',
+            'name' => 'salah',
+            'email' => 'test@test.com',
+            'password' => 'password',
             'password_confirmation' => 'wrong_password',
         ])->assertJsonValidationErrorFor('password');
     }
@@ -49,11 +48,11 @@ class RegisterControllerTest extends TestCase
     {
         $this->assertEquals(
             [
-                'name'     => [
+                'name' => [
                     'nullable',
                     'string',
                 ],
-                'email'    => [
+                'email' => [
                     'required',
                     'email',
                     Rule::unique('users', 'email'),
@@ -63,7 +62,6 @@ class RegisterControllerTest extends TestCase
                     'confirmed',
                     'min:6',
                 ],
-            ]
-            , (new UserRegisterRequest)->rules());
+            ], (new UserRegisterRequest)->rules());
     }
 }

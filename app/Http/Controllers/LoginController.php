@@ -14,8 +14,9 @@ class LoginController extends Controller
     {
         $user = User::query()->create([
             'is_anonymous' => true,
-            'password'     => Str::random(),
+            'password' => Str::random(),
         ]);
+
         return UserResource::make($user)->withToken();
     }
 
@@ -27,8 +28,9 @@ class LoginController extends Controller
         if (Hash::check($request->password, $user->password)) {
             return UserResource::make($user)->withToken();
         }
+
         return response()->json([
-            'code'    => 'failed_login',
+            'code' => 'failed_login',
             'message' => __('auth.failed'),
         ], 403);
     }

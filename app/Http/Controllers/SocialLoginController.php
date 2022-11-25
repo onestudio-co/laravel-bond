@@ -15,7 +15,7 @@ class SocialLoginController extends Controller
         $provider = $request->input('provider');
         $token = $request->input('token');
 
-        /**@var SocialUser $socialUser */
+        /** @var SocialUser $socialUser */
         $socialUser = Socialite::driver($provider)->userFromToken($token);
 
         abort_unless($socialUser !== null, 401, __('auth.failed'));
