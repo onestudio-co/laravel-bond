@@ -28,8 +28,8 @@ class LoginControllerTest extends TestCase
             )
             ->assertJson([
                 'data' => [
-                    'id'           => 1,
-                    'name'         => null,
+                    'id' => 1,
+                    'name' => null,
                     'is_anonymous' => true,
                 ],
             ]);
@@ -47,12 +47,12 @@ class LoginControllerTest extends TestCase
     {
         UserFactory::new()
             ->create([
-                'email'    => 'test@test.com',
+                'email' => 'test@test.com',
                 'password' => '123456',
             ]);
 
         $this->post('api/users/login', [
-            'email'    => 'test@test.com',
+            'email' => 'test@test.com',
             'password' => '123456',
         ])
             ->assertSuccessful()
@@ -74,12 +74,12 @@ class LoginControllerTest extends TestCase
     {
         UserFactory::new()
             ->create([
-                'email'    => 'test@test.com',
+                'email' => 'test@test.com',
                 'password' => '123456',
             ]);
 
         $this->post('api/users/login', [
-            'email'    => 'test@test.com',
+            'email' => 'test@test.com',
             'password' => 'wrong_password',
         ])->assertForbidden()
             ->assertJson([

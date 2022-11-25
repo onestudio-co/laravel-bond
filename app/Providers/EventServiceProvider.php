@@ -10,7 +10,6 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class EventServiceProvider extends ServiceProvider
 {
-
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
@@ -21,7 +20,6 @@ class EventServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
     }
-
 
     public function shouldDiscoverEvents()
     {

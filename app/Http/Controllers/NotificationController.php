@@ -27,12 +27,14 @@ class NotificationController extends Controller
     public function readAll(Request $request)
     {
         $request->user()->notifications->markAsRead();
+
         return response()->json(['message' => 'success']);
     }
 
     public function read(DatabaseNotification $notification)
     {
         $notification->markAsRead();
+
         return response()->json(['message' => 'success']);
     }
 }

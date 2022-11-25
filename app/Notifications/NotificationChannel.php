@@ -21,6 +21,7 @@ abstract class NotificationChannel extends Notification
     {
         $this->notifiable = $notifiable;
         $this->locale($notifiable->locale);
+
         return [
             DatabaseChannel::class,
             FcmChannel::class,
@@ -31,6 +32,7 @@ abstract class NotificationChannel extends Notification
     {
         $this->notifiable = $notifiable;
         $this->locale($notifiable->locale);
+
         return FcmMessage::create()
             ->setData(array_merge($this->getData(), ['code' => $this->getCode()]))
             ->setNotification($this->getNotification())
@@ -76,18 +78,19 @@ abstract class NotificationChannel extends Notification
     {
         $this->notifiable = $notifiable;
         $this->locale($notifiable->locale);
+
         return [
-            'title'        => [
+            'title' => [
                 'ar' => $this->getTitle('ar'),
                 'en' => $this->getTitle('en'),
             ],
-            'body'         => [
+            'body' => [
                 'ar' => $this->getBody('ar'),
                 'en' => $this->getBody('en'),
             ],
-            'code'         => $this->getCode(),
-            'data'         => $this->getData(),
-            'sender_name'  => $this->getSenderName(),
+            'code' => $this->getCode(),
+            'data' => $this->getData(),
+            'sender_name' => $this->getSenderName(),
             'sender_image' => $this->getImage(),
         ];
     }

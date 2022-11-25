@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'is_anonymous'      => 'boolean',
+        'is_anonymous' => 'boolean',
     ];
 
     public function notificationTokens()
@@ -54,9 +54,9 @@ class User extends Authenticatable
     {
         try {
             $this->notify($notification);
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             report($exception);
-            Log::debug('fcm_not_send',[
+            Log::debug('fcm_not_send', [
                 'exception' => $exception,
                 'user' => $this,
                 'notification' => $notification,

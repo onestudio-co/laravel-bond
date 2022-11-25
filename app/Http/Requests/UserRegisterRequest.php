@@ -7,7 +7,6 @@ use Illuminate\Validation\Rule;
 
 class UserRegisterRequest extends FormRequest
 {
-
     public function rules()
     {
         return [

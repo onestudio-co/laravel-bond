@@ -20,6 +20,7 @@ class RedirectIfAuthenticated
                         'code' => 'users_are_not_allowed',
                     ], 403);
                 }
+
                 return redirect(RouteServiceProvider::HOME);
             }
         }
