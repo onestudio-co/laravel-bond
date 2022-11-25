@@ -10,7 +10,7 @@ class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_can_login_anonymosly()
+    public function test_user_can_login_anonymously()
     {
         $this->postJson('api/users/anonymous-login')
             ->assertSuccessful()
@@ -35,7 +35,7 @@ class LoginControllerTest extends TestCase
             ]);
     }
 
-    public function test_authenticated_user_cannot_login_anonymosly()
+    public function test_authenticated_user_cannot_login_anonymously()
     {
         $user = UserFactory::new()->create();
         $this->actingAs($user)
@@ -70,7 +70,7 @@ class LoginControllerTest extends TestCase
             );
     }
 
-    public function test_user_can_not_login_with_worng_password()
+    public function test_user_can_not_login_with_wrong_password()
     {
         UserFactory::new()
             ->create([
