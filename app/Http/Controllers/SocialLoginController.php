@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SocialLoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,13 +11,8 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialLoginController extends Controller
 {
-    public function login(Request $request)
+    public function login(SocialLoginRequest $request)
     {
-        $request->validate([
-            'provider' => 'required|string',
-            'token' => 'required|string',
-        ]);
-
         $provider = $request->input('provider');
         $token = $request->input('token');
 
