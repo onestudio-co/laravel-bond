@@ -15,9 +15,11 @@ return new class extends Migration {
             $table->string('provider');
             $table->string('provider_id');
             $table->string('email');
-            $table->string('last_token');
+            $table->text('last_token');
 
             $table->timestamps();
+
+            $table->unique(['provider', 'email']);
         });
     }
 

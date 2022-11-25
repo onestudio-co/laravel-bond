@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SocialLoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Laravel\Socialite\AbstractUser as SocialUser;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialLoginController extends Controller
 {
-    public function login(SocialLoginRequest $request)
+    public function __invoke(SocialLoginRequest $request)
     {
         $provider = $request->input('provider');
         $token = $request->input('token');
@@ -19,9 +18,9 @@ class SocialLoginController extends Controller
         /**@var SocialUser $socialUser */
         $socialUser = Socialite::driver($provider)->userFromToken($token);
 
-        abort_unless((bool)$socialUser, 401, __('auth.failed'));
+        abort_unless($socialUser !== null, 401, __('auth.failed'));
 
-        $user = User::firstOrCreate([
+        $user = User::query()->firstOrCreate([
             'email' => $socialUser->getEmail(),
         ], [
             'name' => $socialUser->getName(),
