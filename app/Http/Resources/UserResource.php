@@ -20,11 +20,11 @@ class UserResource extends JsonResource
         ];
     }
 
-    public function withToken()
+    public function withToken(string $createTokenKey)
     {
         $this->additional([
             'meta' => [
-                'token' => $this->createToken('test')->plainTextToken,
+                'token' => $this->createToken($createTokenKey ?? 'user')->plainTextToken,
             ],
         ]);
         return $this;
