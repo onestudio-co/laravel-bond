@@ -40,6 +40,11 @@ class User extends Authenticatable
         return $this->hasMany(NotificationToken::class);
     }
 
+    public function socialLogins()
+    {
+        return $this->hasMany(SocialLogin::class);
+    }
+
     public function routeNotificationForFcm()
     {
         return $this->notificationTokens()->pluck('token')->toArray();

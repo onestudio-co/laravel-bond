@@ -5,6 +5,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationTokenController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SocialLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::middleware('language')->group(function (){
         Route::middleware(['throttle:1,2', 'guest'])->post('anonymous-login', [LoginController::class, 'anonymous']);
         Route::post('login', [LoginController::class, 'login'])->middleware('throttle:1,2');
         Route::post('register', [RegisterController::class, 'store'])->middleware('throttle:1,2');
+        Route::post('social-login', SocialLoginController::class)->middleware('throttle:1,2');
     });
     Route::middleware('auth:sanctum')->group(function (){
         Route::post('/notifications/update-token', NotificationTokenController::class);
