@@ -95,7 +95,7 @@ abstract class NotificationChannel extends Notification
         ];
     }
 
-    public function fcmData(): array
+    final public function fcmData(): array
     {
         $data = $this->getData();
         return [

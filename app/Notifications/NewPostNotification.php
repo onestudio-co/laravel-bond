@@ -37,6 +37,6 @@ class NewPostNotification extends NotificationChannel
 
     public function getImage(): ?string
     {
-        return $this->sender_name;
+        return $this->sender_image;
     }
 }

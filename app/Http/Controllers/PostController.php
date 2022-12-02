@@ -16,7 +16,7 @@ class PostController extends Controller
             ->toJson();
         /** @var User $user */
         $user = $request->user();
-        $user->safeNotify(new NewPostNotification($post->id, $post->user->id,
+        $user->safeNotify(new NewPostNotification($post->id, $post->user->name,
             $post->user->profile_image->small));
     }
 }
