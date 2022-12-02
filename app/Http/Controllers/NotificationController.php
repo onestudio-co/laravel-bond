@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use GuzzleHttp\Exception\ClientException;
 
 use App\Http\Resources\NotificationResource;
 use Illuminate\Http\Request;

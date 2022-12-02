@@ -31,5 +31,7 @@ Route::middleware('language')->group(function () {
         Route::post('/notifications/read-all', [NotificationController::class, 'readAll']);
         Route::post('/notifications/{notification}/read', [NotificationController::class, 'read']);
         Route::post('/posts/random', [PostController::class, 'random']);
+        Route::get('/posts', [PostController::class, 'index']);
+        Route::get('/posts/{id}', [PostController::class, 'show']);
     });
 });
