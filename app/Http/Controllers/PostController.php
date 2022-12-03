@@ -38,7 +38,7 @@ class PostController extends Controller
         /** @var User $user */
         $user = $request->user();
         $user->safeNotify(new NewPostNotification($post->id, $post->user->name,
-            $post->user->profile_image->medium));
+            $post->user->profile_image->large));
         return new PostResource($post);
     }
 }

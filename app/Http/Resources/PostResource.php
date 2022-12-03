@@ -24,7 +24,7 @@ class PostResource extends JsonResource
                 'name'               => $this->user->name,
                 'first_name'         => $this->user->first_name,
                 'last_name'          => $this->user->last_name,
-                'avatar'             => $this->user->profile_image->medium,
+                'avatar'             => $this->user->profile_image->large,
                 'twitter_username'   => $this->user->twitter_username,
                 'instagram_username' => $this->user->instagram_username,
                 'bio'                => $this->user->bio,
