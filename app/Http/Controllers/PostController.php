@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Resources\PostResource;
 use GuzzleHttp\Exception\ClientException;
 use App\Notifications\NewPostNotification;
 use Illuminate\Http\Request;
@@ -11,30 +12,22 @@ use MarkSitko\LaravelUnsplash\Facades\Unsplash;
 class PostController extends Controller
 {
 
-    public function index(Request $request): \Illuminate\Http\JsonResponse
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $posts = Unsplash::randomPhoto()
             ->count(10)
             ->toJson();
-        return response()->json(
-            [
-                'data' => $posts,
-            ]
-        );
+        return PostResource::collection($posts);
     }
 
-    public function show(Request $request, string $id): \Illuminate\Http\JsonResponse
+    public function show(Request $request, string $id): PostResource
     {
         try {
             $post = Unsplash::photo($id)->toJson();
         } catch (ClientException $e) {
             abort(404, $e->getMessage());
         }
-        return response()->json(
-            [
-                'data' => $post,
-            ]
-        );
+        return new PostResource($post);
     }
 
     public function random(Request $request)
