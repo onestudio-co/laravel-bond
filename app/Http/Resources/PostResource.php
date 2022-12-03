@@ -24,7 +24,7 @@ class PostResource extends JsonResource
                 'name'               => $this->user->name,
                 'first_name'         => $this->user->first_name,
                 'last_name'          => $this->user->last_name,
-                'avatar'             => $this->user->profile_image->large,
+                'avatar'             => $this->fullSizeImageUrl(),
                 'twitter_username'   => $this->user->twitter_username,
                 'instagram_username' => $this->user->instagram_username,
                 'bio'                => $this->user->bio,
@@ -34,6 +34,11 @@ class PostResource extends JsonResource
             'views'       => $this->views,
             'downloads'   => $this->downloads,
         ];
+    }
+
+    public function fullSizeImageUrl(): string
+    {
+        return str($this->user->profile_image->large)->replaceMatches('/&w=[0-9]*&h=[0-9]*/', '')->value();
     }
 }
 

@@ -37,6 +37,6 @@ class NewPostNotification extends NotificationChannel
 
     public function getImage(): ?string
     {
-        return $this->sender_image;
+        return str($this->sender_image)->replaceMatches('/&w=[0-9]*&h=[0-9]*/', '')->value();;
     }
 }
