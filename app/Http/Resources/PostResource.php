@@ -38,7 +38,7 @@ class PostResource extends JsonResource
 
     public function fullSizeImageUrl(): string
     {
-        return str($this->user->profile_image->large)->replaceMatches('/&w=[0-9]*&h=[0-9]*/', '')->value();
+        return str($this->user->profile_image->large)->replaceMatches('/&w=[0-9]*&h=[0-9]*/', '&w=512&h=512')->value();
     }
 }
 
