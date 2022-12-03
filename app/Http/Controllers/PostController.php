@@ -30,7 +30,7 @@ class PostController extends Controller
         return new PostResource($post);
     }
 
-    public function random(Request $request)
+    public function random(Request $request): PostResource
     {
         $post = Unsplash::randomPhoto()
             ->randomPhoto()
@@ -39,5 +39,6 @@ class PostController extends Controller
         $user = $request->user();
         $user->safeNotify(new NewPostNotification($post->id, $post->user->name,
             $post->user->profile_image->small));
+        return new PostResource($post);
     }
 }
