@@ -15,6 +15,7 @@ class PostController extends Controller
     public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $posts = Unsplash::randomPhoto()
+            ->term($request->term)
             ->count(10)
             ->toJson();
         return PostResource::collection($posts);
