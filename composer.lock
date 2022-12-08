@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5916cae231501cc88226a14458cd52ea",
+    "content-hash": "a6242e22ca5bf2b7bed6800557fce4d1",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -149,6 +149,60 @@
                 "source": "https://github.com/aws/aws-sdk-php/tree/3.240.1"
             },
             "time": "2022-10-24T19:03:23+00:00"
+        },
+        {
+            "name": "based/laravel-fluent",
+            "version": "v0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lepikhinb/laravel-fluent.git",
+                "reference": "0eb128a31180e52e830ac0e7c63b09074c12c51c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lepikhinb/laravel-fluent/zipball/0eb128a31180e52e830ac0e7c63b09074c12c51c",
+                "reference": "0eb128a31180e52e830ac0e7c63b09074c12c51c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^2.1.10",
+                "orchestra/testbench": "^7.5",
+                "pestphp/pest": "^1.2",
+                "pestphp/pest-plugin-laravel": "^1.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Based\\Fluent\\FluentServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Based\\Fluent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Boris Lepikhin",
+                    "email": "boris@lepikhin.com"
+                }
+            ],
+            "description": "Define model attributes the fluent way. Automatically cast properties to native types.",
+            "support": {
+                "issues": "https://github.com/lepikhinb/laravel-fluent/issues",
+                "source": "https://github.com/lepikhinb/laravel-fluent/tree/v0.0.7"
+            },
+            "time": "2022-06-10T17:26:17+00:00"
         },
         {
             "name": "beste/clock",

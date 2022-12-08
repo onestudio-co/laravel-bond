@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "based/laravel-fluent": "^0.0.7",
         "guzzlehttp/guzzle": "^7.2",
         "laravel-notification-channels/fcm": "^2.6",
         "laravel/framework": "^9.19",
