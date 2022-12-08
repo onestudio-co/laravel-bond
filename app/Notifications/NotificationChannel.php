@@ -80,17 +80,17 @@ abstract class NotificationChannel extends Notification
         $this->locale($notifiable->locale);
 
         return [
-            'title'        => [
+            'title' => [
                 'ar' => $this->getTitle('ar'),
                 'en' => $this->getTitle('en'),
             ],
-            'body'         => [
+            'body' => [
                 'ar' => $this->getBody('ar'),
                 'en' => $this->getBody('en'),
             ],
-            'code'         => $this->getCode(),
-            'data'         => $this->getData(),
-            'sender_name'  => $this->getSenderName(),
+            'code' => $this->getCode(),
+            'data' => $this->getData(),
+            'sender_name' => $this->getSenderName(),
             'sender_image' => $this->getImage(),
         ];
     }
@@ -98,12 +98,12 @@ abstract class NotificationChannel extends Notification
     final public function fcmData(): array
     {
         $data = $this->getData();
+
         return [
             'data' => $data ? json_encode($data) : null,
-            'code' => $this->getCode()
+            'code' => $this->getCode(),
         ];
     }
-
 
     abstract public function getCode(): string;
 
