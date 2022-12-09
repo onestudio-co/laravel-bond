@@ -14,21 +14,21 @@ class SocialLogin extends Model
 
     protected $guarded = ['id'];
 
-    private int $id;
+    public int $id;
 
-    protected int $user_id;
+    public int $user_id;
 
-    protected string $provider;
+    public string $provider;
 
-    protected string $provider_id;
+    public string $provider_id;
 
-    protected string $email;
+    public string $email;
 
-    protected string $last_token;
+    public string $last_token;
 
-    protected Carbon $created_at;
+    public Carbon $created_at;
 
-    protected ?Carbon $updated_at;
+    public ?Carbon $updated_at = null;
 
     #[Relation]
     public User $user;

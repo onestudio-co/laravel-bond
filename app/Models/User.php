@@ -31,25 +31,25 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    private int $id;
+    public int $id;
 
-    protected ?string $name;
+    public ?string $name = null;
 
-    protected ?string $email;
+    public ?string $email = null;
 
-    protected ?Carbon $email_verified_at;
+    public ?Carbon $email_verified_at = null;
 
-    protected string $password;
+    public string $password;
 
-    protected bool $is_anonymous = false;
+    public bool $is_anonymous = false;
 
-    protected string $remember_token;
+    public string $remember_token;
 
-    protected Carbon $created_at;
+    public Carbon $created_at;
 
-    protected ?Carbon $updated_at;
+    public ?Carbon $updated_at = null;
 
-    protected string $locale;
+    public string $locale;
 
     #[Relation]
     public Collection $notificationTokens;

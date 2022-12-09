@@ -12,17 +12,17 @@ class NotificationToken extends Model
 
     protected $guarded = [];
 
-    private int $id;
+    public int $id;
 
-    protected int $user_id;
+    public int $user_id;
 
-    protected string $token;
+    public string $token;
 
-    protected string $device_id;
+    public string $device_id;
 
-    protected string $device_type;
+    public string $device_type;
 
-    protected Carbon $created_at;
+    public Carbon $created_at;
 
-    protected ?Carbon $updated_at;
+    protected ?Carbon $updated_at = null;
 }
