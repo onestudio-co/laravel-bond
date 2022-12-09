@@ -9,8 +9,8 @@ class UserObserver
 {
     public function creating(User $user)
     {
-        if (Hash::needsRehash($user->password)) {
-            $user->password = Hash::make($user->password);
+        if (Hash::needsRehash($user->password ?? '')) {
+            $user->password = Hash::make($user->password ?? '');
         }
     }
 }
