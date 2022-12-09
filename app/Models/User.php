@@ -32,21 +32,23 @@ class User extends Authenticatable
 
     private int $id;
 
-    protected Carbon $email_verified_at;
+    protected ?string $name;
 
-    protected bool $is_anonymous = false;
+    protected ?string $email;
+
+    protected ?Carbon $email_verified_at;
 
     protected string $password;
 
+    protected bool $is_anonymous = false;
+
     protected string $remember_token;
-
-    protected string $email;
-
-    protected string $name;
 
     protected Carbon $created_at;
 
     protected Carbon $updated_at;
+
+    protected string $locale;
 
     #[Relation]
     public Collection $notificationTokens;
