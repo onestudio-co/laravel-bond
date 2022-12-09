@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use Based\Fluent\Fluent;
+use Based\Fluent\Relations\Relation;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Fluent;
 
     protected $fillable = [
         'name',
@@ -26,14 +30,28 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $attributes = [
-        'is_anonymous' => false,
-    ];
+    private int $id;
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'is_anonymous' => 'boolean',
-    ];
+    protected Carbon $email_verified_at;
+
+    protected bool $is_anonymous = false;
+
+    protected string $password;
+
+    protected string $remember_token;
+
+    protected string $email;
+
+    protected string $name;
+
+    protected Carbon $created_at;
+
+    protected Carbon $updated_at;
+
+    #[Relation]
+    public Collection $notificationTokens;
+
+    public Collection $socialLogins;
 
     public function notificationTokens()
     {
@@ -45,7 +63,7 @@ class User extends Authenticatable
         return $this->hasMany(SocialLogin::class);
     }
 
-    public function routeNotificationForFcm()
+    public function routeNotificationForFcm(): array
     {
         return $this->notificationTokens()->pluck('token')->toArray();
     }
