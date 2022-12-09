@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Based\Fluent\Relations\Relation;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 
 class SocialLogin extends Model
 {
