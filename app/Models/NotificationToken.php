@@ -24,5 +24,5 @@ class NotificationToken extends Model
 
     public Carbon $created_at;
 
-    protected ?Carbon $updated_at = null;
+    public ?Carbon $updated_at = null;
 }
