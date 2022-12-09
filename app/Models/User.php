@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Based\Fluent\Fluent;
 use Based\Fluent\Relations\Relation;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,7 +47,7 @@ class User extends Authenticatable
 
     protected Carbon $created_at;
 
-    protected Carbon $updated_at;
+    protected ?Carbon $updated_at;
 
     protected string $locale;
 
@@ -55,12 +56,12 @@ class User extends Authenticatable
 
     public Collection $socialLogins;
 
-    public function notificationTokens()
+    public function notificationTokens(): HasMany
     {
         return $this->hasMany(NotificationToken::class);
     }
 
-    public function socialLogins()
+    public function socialLogins(): HasMany
     {
         return $this->hasMany(SocialLogin::class);
     }
