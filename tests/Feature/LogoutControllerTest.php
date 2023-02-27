@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class LogoutControllerTest extends TestCase
@@ -16,14 +15,13 @@ class LogoutControllerTest extends TestCase
      *
      * @return void
      */
-
     public function test_user_can_logout()
     {
         $user = UserFactory::new()->create();
         $token = $user->createToken('user')->plainTextToken;
 
         $this->actingAs($user)
-            ->postJson('api/users/logout', [], ['Authorization' => 'Bearer ' . $token])
+            ->postJson('api/users/logout', [], ['Authorization' => 'Bearer '.$token])
             ->assertSuccessful();
 
         $this->assertDatabaseMissing('personal_access_tokens', [
