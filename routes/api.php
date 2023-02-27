@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationTokenController;
 use App\Http\Controllers\PostController;
@@ -24,6 +25,7 @@ Route::middleware('language')->group(function () {
         Route::post('login', [LoginController::class, 'login'])->middleware('throttle:1,2');
         Route::post('register', [RegisterController::class, 'store'])->middleware('throttle:1,2');
         Route::post('social-login', SocialLoginController::class)->middleware('throttle:1,2');
+        Route::post('logout', [LogoutController::class, 'logout'])->middleware('throttle:1,2');
     });
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/notifications/update-token', NotificationTokenController::class);
