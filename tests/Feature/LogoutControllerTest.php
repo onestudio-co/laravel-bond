@@ -20,8 +20,17 @@ class LogoutControllerTest extends TestCase
     public function test_user_can_logout()
     {
         $user = UserFactory::new()->create();
+        $token = $user->createToken('user')->plainTextToken;
+
         $this->actingAs($user)
-            ->postJson('api/users/logout')
+            ->postJson('api/users/logout', [], ['Authorization' => 'Bearer ' . $token])
             ->assertSuccessful();
+
+        $this->assertDatabaseMissing('personal_access_tokens', [
+            'tokenable_id' => $user->id,
+            'tokenable_type' => 'App\Models\User',
+            'name' => 'user',
+            'token' => hash('sha256', $token),
+        ]);
     }
 }
