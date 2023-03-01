@@ -21,7 +21,7 @@ class LogoutControllerTest extends TestCase
         $token = $user->createToken('user')->plainTextToken;
 
         $this->actingAs($user)
-            ->postJson('api/users/logout', [], ['Authorization' => 'Bearer '.$token])
+            ->postJson('api/logout', [], ['Authorization' => 'Bearer '.$token])
             ->assertSuccessful();
 
         $this->assertDatabaseMissing('personal_access_tokens', [
