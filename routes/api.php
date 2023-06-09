@@ -25,6 +25,7 @@ Route::middleware('language')->group(function () {
         Route::post('login', [LoginController::class, 'login']);
         Route::post('register', [RegisterController::class, 'store']);
         Route::post('social-login', SocialLoginController::class)->middleware('throttle:1,2');
+        Route::post('logout', [LogoutController::class, 'logout']);
     });
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/notifications/update-token', NotificationTokenController::class);
@@ -35,5 +36,6 @@ Route::middleware('language')->group(function () {
         Route::get('/posts', [PostController::class, 'index']);
         Route::get('/posts/{id}', [PostController::class, 'show']);
         Route::post('logout', [LogoutController::class, 'logout']);
+        Route::post('delete-account', [LogoutController::class, 'destroy']);
     });
 });
