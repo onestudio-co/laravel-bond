@@ -138,7 +138,6 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
     'active_user' => 'The :attribute is already taken by an active user.',
 
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

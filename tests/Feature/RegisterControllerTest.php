@@ -89,7 +89,6 @@ class RegisterControllerTest extends TestCase
             ]);
     }
 
-
     public function test_password_confirmation_register()
     {
         $this->postJson('api/users/register', [

@@ -32,8 +32,8 @@ class LogoutControllerTest extends TestCase
         ]);
     }
 
-    public function  test_user_can_delete_his_account(){
-
+    public function test_user_can_delete_his_account()
+    {
         $user = UserFactory::new()->create([
             'name' => 'test user',
             'email' => 'test@user.com',
@@ -43,7 +43,7 @@ class LogoutControllerTest extends TestCase
             ->post('api/delete-account')
             ->assertSuccessful()
             ->assertJson([
-                'message' => __('account deleted successfully')
+                'message' => __('account deleted successfully'),
             ]);
 
         $this->assertSoftDeleted('users', ['id' => $user->id]);

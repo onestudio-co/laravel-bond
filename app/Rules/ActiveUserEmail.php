@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use App\Models\User;
+use Illuminate\Contracts\Validation\Rule;
 
 class ActiveUserEmail implements Rule
 {
