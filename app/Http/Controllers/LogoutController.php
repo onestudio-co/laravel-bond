@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\DeletedUser;
-use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,14 +16,10 @@ class LogoutController extends Controller
         return response()->json(['message' => 'logout success']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): JsonResponse
     {
-        /** @var User $user */
-        $user = Auth::user();
+        event(new DeletedUser($request->user()));
 
-        event(new DeletedUser($user));
-
-        $user->delete();
-        return response()->json(['message' => 'account deleted successfully']);
+        return response()->json(['message' => __('account deleted successfully')]);
     }
 }
