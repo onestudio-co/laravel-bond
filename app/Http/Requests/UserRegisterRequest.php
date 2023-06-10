@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ActiveUserEmail;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UserRegisterRequest extends FormRequest
 {
@@ -17,7 +17,7 @@ class UserRegisterRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('users', 'email'),
+                new ActiveUserEmail(),
             ],
             'password' => [
                 'required',

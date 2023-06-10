@@ -136,6 +136,8 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'active_user' => 'The :attribute is already taken by an active user.',
+
 
     /*
     |--------------------------------------------------------------------------
