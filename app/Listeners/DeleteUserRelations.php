@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\DeletedUser;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class DeleteUserRelations
 {
@@ -15,5 +13,6 @@ class DeleteUserRelations
         $user->tokens()->delete();
         $user->notificationTokens()->delete();
         $user->notifications()->delete();
+        $user->delete();
     }
 }

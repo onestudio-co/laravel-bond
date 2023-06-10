@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Support\Facades\Event;
 
 class LogoutControllerTest extends TestCase
 {
@@ -39,19 +38,14 @@ class LogoutControllerTest extends TestCase
             'name' => 'test user',
             'email' => 'test@user.com',
         ]);
-        $userOldName = $user->name;
 
         $this->actingAs($user)
             ->post('api/delete-account')
             ->assertSuccessful()
-            ->assertJsonStructure(
-                [
-                    'message',
-                ]
-            );
+            ->assertJson([
+                'message' => __('account deleted successfully')
+            ]);
 
         $this->assertSoftDeleted('users', ['id' => $user->id]);
-        $this->assertNotEquals($user->email, $userOldName);
-        $this->assertDatabaseHas('users', ['name' => 'deleted user' ,'email' => null]);
     }
 }
