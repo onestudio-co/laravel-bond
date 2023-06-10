@@ -8,6 +8,10 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropUnique(['email']);
+        });
+
+        Schema::table('users', function (Blueprint $table) {
             $table->softDeletes()->after('updated_at');
             $table->unique(['email', 'deleted_at']);
         });

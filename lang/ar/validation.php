@@ -135,6 +135,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'active_user' => 'الـ:attribute مستخدم بالفعل من قبل مستخدم نشط.',
     'payment_failed_invalid_card' => 'تم رفض العملية، يرجى التأكد من معلومات البطاقة',
 
     'payment_failed_invalid_cvv' => 'تم رفض العملية، يوجد خطأ في رمز التحقق CVV',
