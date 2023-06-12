@@ -17,7 +17,7 @@ class UserRegisterRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                new ActiveUserEmail(),
+                new ActiveUserEmail,
             ],
             'password' => [
                 'required',
