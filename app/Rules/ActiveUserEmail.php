@@ -3,17 +3,15 @@
 namespace App\Rules;
 
 use App\Models\User;
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class ActiveUserEmail implements Rule
+class ActiveUserEmail implements ValidationRule
 {
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return User::query()->where('email', $value)->whereNull('deleted_at')->count() === 0;
-    }
-
-    public function message()
-    {
-        return __('validation.active_user');
+        if (User::query()->where('email', $value)->whereNull('deleted_at')->count() === 0) {
+            $fail('validation.active_user')->translate();
+        }
     }
 }
