@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4412f3be3ad81ad535cb78b5c7134bb8",
+    "content-hash": "be459441b6132725019b82179b9e43db",
     "packages": [
         {
             "name": "beste/clock",
@@ -2735,6 +2735,68 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "marksitko/laravel-unsplash",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marksitko/laravel-unsplash.git",
+                "reference": "458313c81676ee606c9a72d34b6cb28aa386f886"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marksitko/laravel-unsplash/zipball/458313c81676ee606c9a72d34b6cb28aa386f886",
+                "reference": "458313c81676ee606c9a72d34b6cb28aa386f886",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^8.0|^8.1|^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MarkSitko\\LaravelUnsplash\\UnsplashServiceProvider"
+                    ],
+                    "aliases": {
+                        "Unsplash": "MarkSitko\\LaravelUnsplash\\Facades\\Unsplash"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MarkSitko\\LaravelUnsplash\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Sitko",
+                    "email": "hey@marksitko.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides a fluent Unsplash API for Laravel",
+            "homepage": "https://github.com/marksitko/laravel-unsplash",
+            "keywords": [
+                "laravel-unsplash",
+                "marksitko"
+            ],
+            "support": {
+                "issues": "https://github.com/marksitko/laravel-unsplash/issues",
+                "source": "https://github.com/marksitko/laravel-unsplash/tree/2.2.0"
+            },
+            "time": "2023-03-01T06:56:12+00:00"
         },
         {
             "name": "monolog/monolog",
