@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Based\Fluent\Fluent;
-use Based\Fluent\Relations\Relation;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,30 +31,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public int $id;
-
-    public ?string $name = null;
-
-    public ?string $email = null;
-
-    public ?Carbon $email_verified_at = null;
-
-    public string $password;
-
-    public bool $is_anonymous = false;
-
-    public string $remember_token;
-
-    public Carbon $created_at;
-
-    public ?Carbon $updated_at = null;
-
-    public string $locale;
-
-    #[Relation]
-    public Collection $notificationTokens;
-
-    public Collection $socialLogins;
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 
     public function notificationTokens(): HasMany
     {
