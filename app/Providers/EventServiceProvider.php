@@ -4,12 +4,11 @@ namespace App\Providers;
 
 use App\Events\DeletedUser;
 use App\Listeners\DeleteUserRelations;
+use App\Models\User;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
-use App\Models\User;
 
 class EventServiceProvider extends ServiceProvider
 {
