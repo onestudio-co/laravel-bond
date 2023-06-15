@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Validation\Rule;
 use App\Http\Requests\UserRegisterRequest;
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Tests\TestCase;
 
 class RegisterControllerTest extends TestCase
@@ -62,7 +62,7 @@ class RegisterControllerTest extends TestCase
     public function test_can_register_with_email_of_soft_deleted_user()
     {
         $this->markTestIncomplete('The way the soft-delete is made is not correct and it will be reprogrammed');
-         UserFactory::new()->create([
+        UserFactory::new()->create([
             'name' => 'Deleted User',
             'email' => 'deleted@test.com',
             'password' => Hash::make('password'),
