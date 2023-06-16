@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.14",
         "laravel/tinker": "^2.8",
+        "laravel/vapor-core": "^2.31",
         "marksitko/laravel-unsplash": "^2.2",
         "socialiteproviders/apple": "^5.5",
         "socialiteproviders/google": "^4.1"
