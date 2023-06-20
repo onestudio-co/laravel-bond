@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SocialLogin;
 use App\Http\Requests\SocialLoginRequest;
 use App\Http\Resources\UserResource;
+use App\Models\SocialLogin;
 use App\Models\User;
 use Laravel\Socialite\AbstractUser as SocialUser;
 use Laravel\Socialite\Facades\Socialite;
