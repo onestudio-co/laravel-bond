@@ -7,10 +7,10 @@ use App\Listeners\DeleteUserRelations;
 use App\Models\User;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
-use SocialiteProviders\Manager\SocialiteWasCalled;
-use SocialiteProviders\Google\GoogleExtendSocialite;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use SocialiteProviders\Google\GoogleExtendSocialite;
+use SocialiteProviders\Manager\SocialiteWasCalled;
 
 class EventServiceProvider extends ServiceProvider
 {
