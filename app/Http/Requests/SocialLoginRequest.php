@@ -12,7 +12,7 @@ class SocialLoginRequest extends FormRequest
             'provider' => [
                 'required',
                 'string',
-                'in:google,apple',
+                'in:google_jwt,apple',
             ],
             'token' => [
                 'required',
