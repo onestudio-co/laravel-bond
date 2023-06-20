@@ -24,7 +24,7 @@ class SocialLoginTest extends TestCase
         Socialite::shouldReceive('driver->userFromToken')->andReturn($socialUser);
 
         $this->postJson('api/users/social-login', [
-            'provider' => 'google',
+            'provider' => 'google_jwt',
             'token' => $socialUser->token,
         ])
             ->assertSuccessful()
@@ -48,7 +48,7 @@ class SocialLoginTest extends TestCase
             ]);
         $this->assertDatabaseHas('social_logins', [
             'user_id' => User::firstWhere('email', 'test@test.com')->id,
-            'provider' => 'google',
+            'provider' => 'google_jwt',
             'provider_id' => 1,
             'email' => 'test@test.com',
             'last_token' => 'fake_token',
