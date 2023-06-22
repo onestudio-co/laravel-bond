@@ -7,6 +7,7 @@ use App\Http\Controllers\NotificationTokenController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SocialLoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,5 +38,7 @@ Route::middleware('language')->group(function () {
         Route::get('/posts/{id}', [PostController::class, 'show']);
         Route::post('logout', [LogoutController::class, 'logout']);
         Route::post('delete-account', [LogoutController::class, 'destroy']);
+        Route::get('user/{user:id}', [UserController::class, 'show']);
+        Route::put('user/update-profile', [UserController::class, 'update']);
     });
 });
