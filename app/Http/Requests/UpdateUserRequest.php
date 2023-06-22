@@ -18,7 +18,7 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'email',
                 Rule::unique('users', 'email'),
-            ]
+            ],
         ];
     }
 }

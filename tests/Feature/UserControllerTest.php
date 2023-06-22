@@ -14,14 +14,14 @@ class UserControllerTest extends TestCase
     {
         $user = UserFactory::new()->create();
         $this->actingAs($user)
-            ->getJson("api/user/1")
+            ->getJson('api/user/1')
             ->assertSuccessful()
             ->assertJsonStructure([
                 'data' => [
                     'id',
                     'name',
                     'email',
-                ]
+                ],
             ]);
     }
 
@@ -29,7 +29,7 @@ class UserControllerTest extends TestCase
     {
         $user = UserFactory::new()->create([
             'name' => 'Hala Abu Salim',
-            'email' => 'hala@test.com'
+            'email' => 'hala@test.com',
         ]);
 
         $this->actingAs($user)
@@ -42,7 +42,7 @@ class UserControllerTest extends TestCase
                 'data' => [
                     'id' => 1,
                     'name' => 'hala salim',
-                    'email' => 'test@test.com'
+                    'email' => 'test@test.com',
                 ],
             ]);
     }
