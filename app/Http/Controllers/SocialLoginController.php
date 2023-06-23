@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SocialLoginRequest;
 use App\Http\Resources\UserResource;
+use App\Models\SocialLogin;
 use App\Models\User;
 use Laravel\Socialite\AbstractUser as SocialUser;
 use Laravel\Socialite\Facades\Socialite;
@@ -27,7 +28,7 @@ class SocialLoginController extends Controller
             'email_verified_at' => now(),
         ]);
 
-        $user->socialLogins()->updateOrCreate([
+        SocialLogin::query()->updateOrCreate([
             'provider' => $provider,
             'provider_id' => $socialUser->getId(),
         ], [
