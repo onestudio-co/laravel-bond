@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('language')->group(function () {
     Route::prefix('users')->group(function () {
         Route::middleware(['throttle:1,2', 'guest'])->post('anonymous-login', [LoginController::class, 'anonymous']);
-        Route::post('login', [LoginController::class, 'login']);
-        Route::post('register', [RegisterController::class, 'store']);
+        Route::post('login', [LoginController::class, 'login'])->middleware('throttle:1,2');
+        Route::post('register', [RegisterController::class, 'store'])->middleware('throttle:1,2');
         Route::post('social-login', SocialLoginController::class)->middleware('throttle:1,2');
-        Route::post('logout', [LogoutController::class, 'logout']);
+        Route::post('logout', [LogoutController::class, 'logout'])->middleware('throttle:1,2');
     });
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/notifications/update-token', NotificationTokenController::class);
