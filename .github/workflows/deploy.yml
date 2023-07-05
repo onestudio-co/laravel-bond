@@ -29,7 +29,7 @@ jobs:
       - name: Install Project Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Deploy Environment
-        run: vapor deploy ${{ github.ref_name }} --commit="${{ github.event.head_commit.id }}" --message="${{ github.event.head_commit.message }}"
+      - name: Deploy Env
+        run: vapor deploy 
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
