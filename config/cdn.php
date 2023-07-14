@@ -127,9 +127,9 @@ return [
                 | * Note: in case of multiple buckets remove the '*'
                 |
                 */
-                'buckets'       => [
+                'buckets' => [
 
-                    env('ASSET_BUCKET',0) => '*',
+                    env('ASSET_BUCKET', 0) => '*',
                     // examples:
                     //   'your-js-bucket-name-here'   =>  ['public/js'],
                     //   'your-css-bucket-name-here'  =>  ['public/css'],
@@ -178,8 +178,8 @@ return [
                 | locations to achieve low latency and faster page load times.
                 |
                 */
-                'cloudfront'    => [
-                    'use'     => env('CDN_UseCloudFront', true),
+                'cloudfront' => [
+                    'use' => env('CDN_UseCloudFront', true),
                     'cdn_url' => env('CDN_CloudFrontUrl', 'd2bpgsq95cnk9l.cloudfront.net'),
                 ],
 
@@ -229,10 +229,10 @@ return [
     | Enter the full paths of directories (starting from the application root).
     |
     */
-    'include'   => [
+    'include' => [
         'directories' => ['public'],
-        'extensions'  => [],
-        'patterns'    => [],
+        'extensions' => [],
+        'patterns' => [],
     ],
 
     /*
@@ -246,12 +246,12 @@ return [
     | 'hidden' is a boolean to excludes "hidden" directories and files (starting with a dot)
     |
     */
-    'exclude'   => [
+    'exclude' => [
         'directories' => [],
-        'files'       => [],
-        'extensions'  => ['*.html','*.php'],
-        'patterns'    => [],
-        'hidden'      => true,
+        'files' => [],
+        'extensions' => ['*.html', '*.php'],
+        'patterns' => [],
+        'hidden' => true,
     ],
 
 ];

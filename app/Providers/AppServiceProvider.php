@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Providers\S3Provider;
 use Illuminate\Support\ServiceProvider;
 use Publiux\laravelcdn\Providers\AwsS3Provider;
 
