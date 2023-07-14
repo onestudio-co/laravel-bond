@@ -7,7 +7,6 @@ use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use Illuminate\Support\Collection;
 use Publiux\laravelcdn\Contracts\CdnHelperInterface;
-use Publiux\laravelcdn\Providers\AwsS3Provider;
 use Publiux\laravelcdn\Providers\Contracts\ProviderInterface;
 use Publiux\laravelcdn\Providers\Provider;
 use Publiux\laravelcdn\Validators\Contracts\ProviderValidatorInterface;
@@ -53,7 +52,7 @@ class S3Provider extends Provider implements ProviderInterface
     /**
      * this array holds the parsed configuration to be used across the class.
      *
-     * @var Array
+     * @var array
      */
     protected $supplier;
 
@@ -82,17 +81,12 @@ class S3Provider extends Provider implements ProviderInterface
      */
     protected $provider_validator;
 
-    /**
-     * @param \Symfony\Component\Console\Output\ConsoleOutput $console
-     * @param \Publiux\laravelcdn\Validators\Contracts\ProviderValidatorInterface $provider_validator
-     * @param \Publiux\laravelcdn\Contracts\CdnHelperInterface                    $cdn_helper
-     */
     public function __construct(
         ConsoleOutput $console,
         ProviderValidatorInterface $provider_validator,
         CdnHelperInterface $cdn_helper
     ) {
-//        throw new \Exception();
+        //        throw new \Exception();
         $this->console = $console;
         $this->provider_validator = $provider_validator;
         $this->cdn_helper = $cdn_helper;
@@ -102,7 +96,6 @@ class S3Provider extends Provider implements ProviderInterface
      * Read the configuration and prepare an array with the relevant configurations
      * for the (AWS S3) provider. and return itself.
      *
-     * @param $configurations
      *
      * @return $this
      */
@@ -123,7 +116,7 @@ class S3Provider extends Provider implements ProviderInterface
             'cloudfront' => $this->default['providers']['aws']['s3']['cloudfront']['use'],
             'cloudfront_url' => $this->default['providers']['aws']['s3']['cloudfront']['cdn_url'],
             'http' => $this->default['providers']['aws']['s3']['http'],
-            'upload_folder' => $this->default['providers']['aws']['s3']['upload_folder']
+            'upload_folder' => $this->default['providers']['aws']['s3']['upload_folder'],
         ];
 
         // check if any required configuration is missed
@@ -137,7 +130,6 @@ class S3Provider extends Provider implements ProviderInterface
     /**
      * Upload assets.
      *
-     * @param $assets
      *
      * @return bool
      */
@@ -146,7 +138,7 @@ class S3Provider extends Provider implements ProviderInterface
         // connect before uploading
         $connected = $this->connect();
 
-        if (!$connected) {
+        if (! $connected) {
             return false;
         }
 
@@ -166,7 +158,7 @@ class S3Provider extends Provider implements ProviderInterface
                         // the bucket name
                         'Bucket' => $this->getBucket(),
                         // the path of the file on the server (CDN)
-                        'Key' => $this->supplier['upload_folder'] . str_replace('\\', '/', $file->getPathName()),
+                        'Key' => $this->supplier['upload_folder'].str_replace('\\', '/', $file->getPathName()),
                         // the path of the path locally
                         'Body' => fopen($file->getRealPath(), 'r'),
                         // the permission of the file
@@ -177,10 +169,10 @@ class S3Provider extends Provider implements ProviderInterface
                         'Expires' => $this->default['providers']['aws']['s3']['expires'],
                     ]);
 
-
                     $this->s3_client->execute($command);
                 } catch (S3Exception $e) {
                     $this->console->writeln('<fg=red>Upload error: '.$e->getMessage().'</fg=red>');
+
                     return false;
                 }
             }
@@ -206,31 +198,29 @@ class S3Provider extends Provider implements ProviderInterface
         try {
             // Instantiate an S3 client
             $this->setS3Client(new S3Client([
-                        'version' => $this->supplier['version'],
-                        'region' => $this->supplier['region'],
-                        'endpoint' => $this->supplier['endpoint'],
-                        'http' => $this->supplier['http']
-                    ]
-                )
+                'version' => $this->supplier['version'],
+                'region' => $this->supplier['region'],
+                'endpoint' => $this->supplier['endpoint'],
+                'http' => $this->supplier['http'],
+            ]
+            )
             );
         } catch (\Exception $e) {
             $this->console->writeln('<fg=red>Connection error: '.$e->getMessage().'</fg=red>');
+
             return false;
         }
 
         return true;
     }
 
-    /**
-     * @param $s3_client
-     */
     public function setS3Client($s3_client)
     {
         $this->s3_client = $s3_client;
     }
 
     /**
-     * @param  Collection $assets
+     * @param  Collection  $assets
      * @return mixed
      */
     private function getFilesAlreadyOnBucket($assets)
@@ -245,8 +235,8 @@ class S3Provider extends Provider implements ProviderInterface
             foreach ($files->get('Contents') ?? [] as $file) {
                 $a = [
                     'Key' => $file['Key'],
-                    "LastModified" => $file['LastModified']->getTimestamp(),
-                    'Size' => intval($file['Size'])
+                    'LastModified' => $file['LastModified']->getTimestamp(),
+                    'Size' => intval($file['Size']),
                 ];
                 $filesOnAWS->put($file['Key'], $a);
             }
@@ -259,8 +249,8 @@ class S3Provider extends Provider implements ProviderInterface
 
         return $assets->filter(function ($file) use (&$filesOnAWS) {
             $fileOnAWS = $filesOnAWS->get(str_replace('\\', '/', $file->getPathName()));
-            if(! $fileOnAWS){
-                return true ;
+            if (! $fileOnAWS) {
+                return true;
             }
             //select to upload files that are different in size AND last modified time.
             return $file->getMTime() !== $fileOnAWS['LastModified'] && $file->getSize() !== $fileOnAWS['Size'];
@@ -294,7 +284,7 @@ class S3Provider extends Provider implements ProviderInterface
         // connect before uploading
         $connected = $this->connect();
 
-        if (!$connected) {
+        if (! $connected) {
             return false;
         }
 
@@ -310,7 +300,7 @@ class S3Provider extends Provider implements ProviderInterface
             ]);
 
             // Check if the bucket is already empty
-            if (!$contents['Contents']) {
+            if (! $contents['Contents']) {
                 $this->console->writeln('<fg=green>The bucket '.$this->getBucket().' is already empty.</fg=green>');
 
                 return true;
@@ -325,6 +315,7 @@ class S3Provider extends Provider implements ProviderInterface
             $empty->delete();
         } catch (S3Exception $e) {
             $this->console->writeln('<fg=red>Deletion error: '.$e->getMessage().'</fg=red>');
+
             return false;
         }
 
@@ -337,7 +328,6 @@ class S3Provider extends Provider implements ProviderInterface
      * This function will be called from the CdnFacade class when
      * someone use this {{ Cdn::asset('') }} facade helper.
      *
-     * @param $path
      *
      * @return string
      */
@@ -346,15 +336,15 @@ class S3Provider extends Provider implements ProviderInterface
         if ($this->getCloudFront() === true) {
             $url = $this->cdn_helper->parseUrl($this->getCloudFrontUrl());
 
-            return $url['scheme'] . '://' . $url['host'] . '/' . $path;
+            return $url['scheme'].'://'.$url['host'].'/'.$path;
         }
 
         $url = $this->cdn_helper->parseUrl($this->getUrl());
 
         $bucket = $this->getBucket();
-        $bucket = (!empty($bucket)) ? $bucket.'.' : '';
+        $bucket = (! empty($bucket)) ? $bucket.'.' : '';
 
-        return $url['scheme'] . '://' . $bucket . $url['host'] . '/' . $path;
+        return $url['scheme'].'://'.$bucket.$url['host'].'/'.$path;
     }
 
     /**
@@ -362,7 +352,7 @@ class S3Provider extends Provider implements ProviderInterface
      */
     public function getCloudFront()
     {
-        if (!is_bool($cloudfront = $this->cloudfront)) {
+        if (! is_bool($cloudfront = $this->cloudfront)) {
             return false;
         }
 
@@ -382,9 +372,8 @@ class S3Provider extends Provider implements ProviderInterface
      */
     public function getUrl()
     {
-        return rtrim($this->provider_url, '/') . '/';
+        return rtrim($this->provider_url, '/').'/';
     }
-
 
     public function __get($attr)
     {
