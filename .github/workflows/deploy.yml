@@ -29,6 +29,10 @@ jobs:
       - name: Install Project Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: run npm
+        run: npm install
+      - name: build ui
+        run: npm run build
       - name: Deploy Env
         run: vapor deploy production --commit="${CI_COMMIT_ID}"
         env:

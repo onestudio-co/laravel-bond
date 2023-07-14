@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Providers\S3Provider;
 use Illuminate\Support\ServiceProvider;
+use Publiux\laravelcdn\Providers\AwsS3Provider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->app->alias(S3Provider::class, AwsS3Provider::class);
     }
 
     /**
@@ -20,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        $this->app->alias(S3Provider::class, AwsS3Provider::class);
     }
 }

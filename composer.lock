@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0cbcddd86f62b63c0b4fcf7cac21e55",
+    "content-hash": "a0aa3ff61e40abf2067b23733236a5af",
     "packages": [
         {
             "name": "area17/twill",
@@ -6584,6 +6584,81 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.11.18"
             },
             "time": "2023-05-23T02:31:11+00:00"
+        },
+        {
+            "name": "publiux/laravelcdn",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/publiux/laravelcdn.git",
+                "reference": "4815b825de9a14c74d326fcdb5b6b2b19da75581"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/publiux/laravelcdn/zipball/4815b825de9a14c74d326fcdb5b6b2b19da75581",
+                "reference": "4815b825de9a14c74d326fcdb5b6b2b19da75581",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "~3.2",
+                "illuminate/config": "^8|^9|^10",
+                "illuminate/support": "^8|^9|^10",
+                "laravel/framework": "^8|^9|^10",
+                "php": ">=7.2.5",
+                "symfony/console": "^5|^6",
+                "symfony/finder": "^5|^6"
+            },
+            "require-dev": {
+                "mockery/mockery": "1.4.2",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Publiux\\laravelcdn\\CdnServiceProvider"
+                    ],
+                    "aliases": {
+                        "CDN": "Publiux\\laravelcdn\\Facades\\CdnFacadeAccessor"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Publiux\\laravelcdn\\": "src/"
+                },
+                "classmap": [
+                    "tests/TestCase.php",
+                    "src/Publiux/laravelcdn/Exceptions"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raul Ruiz",
+                    "email": "publiux@gmail.com"
+                }
+            ],
+            "description": "Content Delivery Network (CDN) Package for Laravel",
+            "keywords": [
+                "AWS S3",
+                "Assets Upload",
+                "amazon",
+                "aws",
+                "cdn",
+                "content delivery network",
+                "laravel",
+                "s3",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/publiux/laravelcdn/issues",
+                "source": "https://github.com/publiux/laravelcdn/tree/v4.1.0"
+            },
+            "time": "2023-05-10T13:27:12+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
