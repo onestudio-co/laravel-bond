@@ -37,8 +37,8 @@ jobs:
         run: npm run build
       - name: push assest
         env:
-        AWS_S3_ACCESS_KEY: "${{ secrets.assest_key }}"
-        AWS_S3_SECRET_KEY: "${{ secrets.assests_secert }}"
+          AWS_S3_ACCESS_KEY: "${{ secrets.assest_key }}"
+          AWS_S3_SECRET_KEY: "${{ secrets.assests_secert }}"
         run: php artisan cdn:push
       - name: Deploy Env
         run: vapor deploy production --commit="${CI_COMMIT_ID}"
