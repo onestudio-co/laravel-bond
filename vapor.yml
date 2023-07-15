@@ -2,7 +2,9 @@ id: 37314
 name: laravel-bond
 environments:
     production:
-        storage : laravel-bond
+    storage:
+      - laravel-bond
+      - laravel-bond-assest
         database: bond_db
         memory: 1024
         cli-memory: 512
@@ -14,4 +16,4 @@ environments:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
             - 'npm install'
-            - 'npm run build'
+            - 'npm run build && php artisan cdn:push && rm -rf public/assets'
