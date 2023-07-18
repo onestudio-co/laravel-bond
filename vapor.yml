@@ -14,6 +14,5 @@ environments:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
             - 'npm install'
-            - 'npm run build'
-            - 'php artisan cdn:push'
+            - 'npm run build && rm -rf node_modules'
 
