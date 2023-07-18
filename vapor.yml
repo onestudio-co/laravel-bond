@@ -15,4 +15,6 @@ environments:
             - 'php artisan event:cache'
             - 'npm install'
             - 'npm run build && rm -rf node_modules'
+            - 'php artisan config:cache'
+        
 
