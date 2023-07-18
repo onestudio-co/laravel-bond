@@ -1,6 +1,6 @@
 id: 37314
 name: laravel-bond
-asset-domain: 'd2bpgsq95cnk9l.cloudfront.net'
+asset-domain: 'https://d2bpgsq95cnk9l.cloudfront.net'
 environments:
     production:
         storage: laravel-bond
