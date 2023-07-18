@@ -1,5 +1,6 @@
 id: 37314
 name: laravel-bond
+asset-domain: 'd2bpgsq95cnk9l.cloudfront.net'
 environments:
     production:
         storage: laravel-bond
@@ -14,4 +15,4 @@ environments:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
             - 'npm install'
-            - 'npm run build'
+            - 'npm run build -- --mode staging'
