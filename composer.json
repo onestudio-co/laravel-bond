@@ -13,7 +13,7 @@
         "laravel/framework": "^10.10",
         "laravel/octane": "^2.0",
         "laravel/sanctum": "^3.2",
-        "laravel/telescope": "^4.14",
+        "laravel/telescope": "^4.15",
         "laravel/tinker": "^2.8",
         "laravel/vapor-core": "^2.31",
         "marksitko/laravel-unsplash": "^2.2",
