@@ -129,7 +129,7 @@ return [
                 */
                 'buckets' => [
 
-                    env('ASSET_BUCKET', 0) => '*',
+                    env('AWS_BUCKET', 0) => '*',
                     // examples:
                     //   'your-js-bucket-name-here'   =>  ['public/js'],
                     //   'your-css-bucket-name-here'  =>  ['public/css'],
@@ -180,7 +180,7 @@ return [
                 */
                 'cloudfront' => [
                     'use' => env('CDN_UseCloudFront', true),
-                    'cdn_url' => env('CDN_CloudFrontUrl', 'd2bpgsq95cnk9l.cloudfront.net'),
+                    'cdn_url' => env('CDN_CloudFrontUrl'),
                 ],
 
                 /*
