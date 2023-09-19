@@ -107,12 +107,12 @@ abstract class NotificationChannel extends Notification
 
     abstract public function getCode(): string;
 
-    public function getTitle($locale = null): string|null
+    public function getTitle($locale = null): ?string
     {
         return trans('notification.'.$this->getCode().'.title', $this->getAttributes(), $locale ?? $this->locale);
     }
 
-    public function getBody($locale = null): string|null
+    public function getBody($locale = null): ?string
     {
         return trans('notification.'.$this->getCode().'.body', $this->getAttributes(), $locale ?? $this->locale);
     }

@@ -252,6 +252,7 @@ class S3Provider extends Provider implements ProviderInterface
             if (! $fileOnAWS) {
                 return true;
             }
+
             //select to upload files that are different in size AND last modified time.
             return $file->getMTime() !== $fileOnAWS['LastModified'] && $file->getSize() !== $fileOnAWS['Size'];
         });
