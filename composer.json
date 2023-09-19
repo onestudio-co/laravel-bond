@@ -19,7 +19,8 @@
         "marksitko/laravel-unsplash": "^2.2",
         "publiux/laravelcdn": "~4.0",
         "socialiteproviders/apple": "^5.5",
-        "socialiteproviders/google": "^4.1"
+        "socialiteproviders/google": "^4.1",
+        "spatie/laravel-ignition": "^2.1"
     },
     "require-dev": {
         "brianium/paratest": "^7.1",
@@ -28,8 +29,7 @@
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.1",
-        "spatie/laravel-ignition": "^2.0"
+        "phpunit/phpunit": "^10.1"
     },
     "autoload": {
         "psr-4": {
